@@ -4,4 +4,4 @@ print()
 
 print('Hello World')
 
-print('This line is for udating the project and uploading to GitHub.')
+print('This line is for updating the project and uploading to GitHub.')
