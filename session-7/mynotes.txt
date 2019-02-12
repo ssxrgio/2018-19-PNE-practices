@@ -1,0 +1,112 @@
+The model we are going to use is the client-server model, which is based on a server that stores and provides data to a client.
+
+                                                        Request
+                                      Client ------------------------------> Server
+                                             <------------------------------
+                                                        Response
+
+Basically, it's a request-response model.
+
+The client starts the communication.
+
+What happens without a client? Nothing. The server is always turned on waiting for requests. Without one, no response will be provided.
+What happens without a server? Nothing again: there is no provider of information nor anything that receives a request. For this,
+it is important to run the server FIRST.
+
+The client can be any electronic device with internet access. Btw, it's only ONE DEVICE whereas a server can be multiple.
+
+HOW TO CHECK A SERVER/CLIENT WITH ONE COMPUTER? Just run the server and client in the same machine. This can be really confusing.
+
+________________________________________________________________________________________________________________________________________
+NETWORKS:
+----------------------------------------------------------------------------------------------------------------------------------------
+
+IP Address: all machines connected to internet have a network interface (1, 2, 3...). This interface is the IP Address.
+            The client is connected to internet, so it has at least one interface (one IP Address). The IP Address is unique for the
+            place/network you connect to.
+
+PING: buscar.
+
+URL: text that identifies a computer's interface: the address can point to variable resources over time. They are formed by a sequence
+     of characters according to a model and standard format that designates resources in a network.
+
+DNS servers (Domain Name system): There are special servers in the internet. They act as translators between a URl and an IP Address.
+
+PORT: IP identify the interface address of a computer. But inside a computer (or mobile, or tablet) there are many apps running at the
+      same time
+
+      For identifying app we use the pair (IP, port)
+      There are some standard ports for some services. For example the 80 port is reserved for web servers.
+
+      For connecting to a server is CRUCIAL to know the port. If not, you cannot connect to that specific server. Example: sending a
+      package to a house only knowing the street, not the number of the house.
+
+
+
+________________________________________________________________________________________________________________________________________
+EXERCISE 1:
+----------------------------------------------------------------------------------------------------------------------------------------
+Eduroam IP Address from iPhone at URJC: 10.3.52.198
+IP Address from the Linux computer: 212.128.253.94 # Access to it by writing in the terminal 'ifconfig'.
+Teacher's IP address of LAB: 212.128.253.64
+
+________________________________________________________________________________________________________________________________________
+EXERCISE 3:
+----------------------------------------------------------------------------------------------------------------------------------------
+Writing 'ping 8.8.8.8' in the terminal replies:
+   >> 64 bytes from 8.8.8.8: icmp_seq=1 ttl=121 time=3.53 ms       # It's really typical that times are different, but quite similar.
+      64 bytes from 8.8.8.8: icmp_seq=2 ttl=121 time=3.70 ms
+      64 bytes from 8.8.8.8: icmp_seq=3 ttl=121 time=3.70 ms
+      64 bytes from 8.8.8.8: icmp_seq=4 ttl=121 time=3.54 ms
+      64 bytes from 8.8.8.8: icmp_seq=5 ttl=121 time=3.53 ms
+________________________________________________________________________________________________________________________________________
+EXERCISE 4:
+----------------------------------------------------------------------------------------------------------------------------------------
+Testing the ping of the computer's IP Address: 'ping 212.128.253.94':
+   >> PING 212.128.253.94 (212.128.253.94) 56(84) bytes of data.
+      64 bytes from 212.128.253.94: icmp_seq=1 ttl=64 time=0.055 ms
+      64 bytes from 212.128.253.94: icmp_seq=2 ttl=64 time=0.057 ms
+      64 bytes from 212.128.253.94: icmp_seq=3 ttl=64 time=0.052 ms
+      64 bytes from 212.128.253.94: icmp_seq=4 ttl=64 time=0.057 ms
+
+________________________________________________________________________________________________________________________________________
+EXERCISE 5:
+----------------------------------------------------------------------------------------------------------------------------------------
+Testing the ping of the mate's computer's IP Address: 'ping 212.128.253.94':
+   >> 64 bytes from 212.128.253.93: icmp_seq=1 ttl=64 time=0.617 ms
+      64 bytes from 212.128.253.93: icmp_seq=2 ttl=64 time=0.700 ms
+      64 bytes from 212.128.253.93: icmp_seq=3 ttl=64 time=0.607 ms
+      64 bytes from 212.128.253.93: icmp_seq=4 ttl=64 time=0.694 ms
+      64 bytes from 212.128.253.93: icmp_seq=5 ttl=64 time=0.459 ms
+      64 bytes from 212.128.253.93: icmp_seq=6 ttl=64 time=0.588 ms
+      64 bytes from 212.128.253.93: icmp_seq=7 ttl=64 time=0.483 ms
+
+________________________________________________________________________________________________________________________________________
+EXERCISE 6:
+----------------------------------------------------------------------------------------------------------------------------------------
+Testing the ping of my mobile phone: 'ping 10.3.52.198':
+    >> 64 bytes from 10.3.52.198: icmp_seq=1 ttl=63 time=25.6 ms
+       64 bytes from 10.3.52.198: icmp_seq=2 ttl=63 time=47.3 ms
+       64 bytes from 10.3.52.198: icmp_seq=3 ttl=63 time=70.7 ms
+       64 bytes from 10.3.52.198: icmp_seq=4 ttl=63 time=93.4 ms
+
+________________________________________________________________________________________________________________________________________
+EXERCISE 7:
+----------------------------------------------------------------------------------------------------------------------------------------
+Ping www.google.com (216.58.211.228):
+    >> 64 bytes from mad01s24-in-f4.1e100.net (216.58.211.228): icmp_seq=1 ttl=55 time=3.59 ms
+       64 bytes from mad01s24-in-f4.1e100.net (216.58.211.228): icmp_seq=2 ttl=55 time=3.68 ms
+       64 bytes from mad01s24-in-f4.1e100.net (216.58.211.228): icmp_seq=3 ttl=55 time=4.00 ms
+       64 bytes from mad01s24-in-f4.1e100.net (216.58.211.228): icmp_seq=4 ttl=55 time=5.35 ms
+
+________________________________________________________________________________________________________________________________________
+EXERCISE 8:
+----------------------------------------------------------------------------------------------------------------------------------------
+Ping to www.urjc.es (212.128.240.50):
+    >> 64 bytes from www.urjc.es (212.128.240.50): icmp_seq=1 ttl=253 time=2.08 ms
+       64 bytes from www.urjc.es (212.128.240.50): icmp_seq=2 ttl=253 time=2.05 ms
+       64 bytes from www.urjc.es (212.128.240.50): icmp_seq=3 ttl=253 time=2.10 ms
+       64 bytes from www.urjc.es (212.128.240.50): icmp_seq=4 ttl=253 time=2.19 ms
+__________________________________________________________
+ This line was written with the file_write.py program
+----------------------------------------------------------
