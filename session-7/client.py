@@ -13,16 +13,13 @@ IP = '212.128.253.64'
 
 s.connect((IP, port))
 
-while True:
-    message = input('Type a message for the chat: ')
-    s.send(str.encode((message))) # For communicating we use bites, NOT STRINGS.
-
-s.close()
+s.send(str.encode(('Hello world.'))) # For communicating we use bites, NOT STRINGS.
 
 msg = s.recv(2048).decode('utf-8')
 
 print('Message from the server: ',  msg)
 
+s.close()
 
 print('The end')
 
