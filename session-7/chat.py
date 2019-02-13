@@ -4,7 +4,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 print('Socket created succesfully.\n')
 
-port = 8080
+port = 8081
 IP = '212.128.253.64'
 
 s.connect((IP, port))

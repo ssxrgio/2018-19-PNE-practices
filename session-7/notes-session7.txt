@@ -25,7 +25,9 @@ IP Address: all machines connected to internet have a network interface (1, 2, 3
             The client is connected to internet, so it has at least one interface (one IP Address). The IP Address is unique for the
             place/network you connect to.
 
-PING: buscar.
+PING: its a diagnostic utility in computer networks that check the communication status of the local host with one or more remote
+      computers of an IP network by sending ICMP request (ICMP Echo Request) and response (ICMP Echo Reply) packets.
+      Using this utility, the status, speed and quality of a given network can be diagnosed.
 
 URL: text that identifies a computer's interface: the address can point to variable resources over time. They are formed by a sequence
      of characters according to a model and standard format that designates resources in a network.
