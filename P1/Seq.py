@@ -27,20 +27,13 @@ class seq:
 
     def count(self, base):
         n = 0
-
-        if base == 'A':
-            n += 1
-
-        elif base == 'G':
-            n += 1
-
-        elif base == 'T':
-            n += 1
-
-        elif base == 'C':
-            n += 1
+        for e in self.strbases:
+            if base == e:
+                n += 1
 
         return n
 
     def perc(self, base):
-        (self.count(base) / self.len()) * 100
+        percentage = round(self.count(base) * 100.0 / self.len(), 2)
+
+        return percentage
