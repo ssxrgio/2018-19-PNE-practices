@@ -17,10 +17,10 @@ s.send(str.encode(('Hello world.'))) # For communicating we use bites, NOT STRIN
 
 msg = s.recv(2048).decode('utf-8')
 
-print('Message from the server: ',  msg)
+print('Message from the server: ', msg)
 
 s.close()
 
-print('The end')
+print('\nThe end')
 
 
