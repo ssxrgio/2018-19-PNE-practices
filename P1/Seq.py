@@ -35,5 +35,4 @@ class seq:
 
     def perc(self, base):
         percentage = round(self.count(base) * 100.0 / self.len(), 2)
-
         return percentage
