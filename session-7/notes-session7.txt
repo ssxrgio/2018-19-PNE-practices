@@ -43,6 +43,9 @@ PORT: IP identify the interface address of a computer. But inside a computer (or
       For connecting to a server is CRUCIAL to know the port. If not, you cannot connect to that specific server. Example: sending a
       package to a house only knowing the street, not the number of the house.
 
+      When things are changed in a server (for example the message), the port 'disconnects' and has to be changed again in order to
+      operate with the server.
+
 
 
 ________________________________________________________________________________________________________________________________________
