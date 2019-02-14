@@ -30,7 +30,7 @@ try:
 
         # Read the message from the client, if any
         msg = clientsocket.recv(2048).decode("utf-8")
-        print("Sequence from client: {}".format(msg))
+        print("Sequence recieved from client: {}".format(msg))
 
         # Send the message
         msg = seq(msg)
