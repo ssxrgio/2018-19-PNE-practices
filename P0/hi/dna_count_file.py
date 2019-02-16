@@ -20,7 +20,7 @@ for line in dna:
         if e == 'C':
             c += 1
 
-    print('\nTotal lenght:', len(line))
+    print('\nTotal count of bases:')
     print('\nA:', a)
     print('C:', c)
     print('T:', t)
