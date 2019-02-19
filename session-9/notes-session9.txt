@@ -1,0 +1,42 @@
+________________________________________________________________________________________________________________________
+SOCKET.
+------------------------------------------------------------------------------------------------------------------------
+Definition: A socket is one endpoint of a two-way communication link between two programs running on the network.
+            A socket is bound to a port number so that the TCP layer can identify the application that data is destined
+            to be sent to.
+
+Normally, a server runs on a specific computer and has a socket that is bound to a specific port number.
+The server just waits, listening to the socket for a client to make a connection request.
+
+On the client-side: The client knows the hostname of the machine on which the server is running and the port number on
+                    which the server is listening. To make a connection request, the client tries to rendezvous with
+                    the server on the server's machine and port. The client also needs to identify itself to the server
+                    so it binds to a local port number that it will use during this connection. This is usually
+                    assigned by the system.
+
+         [server | port | listen] <------------------------------------ [port | client]
+
+
+If everything goes well, the server accepts the connection.
+
+Upon acceptance, the server gets a new socket bound to the same local port and also has its remote endpoint set to the
+address and port of the client. It needs a new socket so that it can continue to listen to the original socket for
+connection requests while tending to the needs of the connected client.
+
+         [server | port | listen] ------------------------------------> [port | client]
+
+On the client side, if the connection is accepted, a socket is successfully created and the client can use the socket
+to communicate with the server.
+
+The client and server can now communicate by writing to or reading from their sockets.
+__________________________________________________________________________________________________________________________
+THE SERVER SIDE:
+--------------------------------------------------------------------------------------------------------------------------
+ -  The servers initially create one socket, bound to the IP and the PORT where the clients should connect
+ -  They wait, until a client connects
+ -  In our examples: the server only can attend one client at a time
+ -  Once the client is connected, a new socket is created: this sockets allows the server to communicate with the client
+ -  The server reads the request message, process it and generates the response
+ -  Then it waits for the next client
+ -  The clients are queued
+
