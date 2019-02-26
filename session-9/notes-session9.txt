@@ -16,7 +16,6 @@ On the client-side: The client knows the hostname of the machine on which the se
 
          [server | port | listen] <------------------------------------ [port | client]
 
-
 If everything goes well, the server accepts the connection.
 
 Upon acceptance, the server gets a new socket bound to the same local port and also has its remote endpoint set to the
