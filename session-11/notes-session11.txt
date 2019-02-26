@@ -1,0 +1,26 @@
+__________________________________________________________________________________________________________________________________
+INTRODUCTION TO THE HTTP PROTOCOL:
+----------------------------------------------------------------------------------------------------------------------------------
+- HTTP protocol is the language spoken between a browser (client) and a web server
+- This is our general scenario, in which there is a communication between one client and one server.
+  There are two kinds of sockets: one just for listening to new connection on the server (Red dot), and others for interchanging
+  data between the client and the server (blue dots).
+
+
+                            [server | socket] <------- Transmitting and  -------- [socket | client]
+                                              --------  receiving data   ------->
+
+____________________________________________________________________________________________________________________________________
+REQUESTING A WEB PAGE:
+------------------------------------------------------------------------------------------------------------------------------------
+Let's understand what is happening when a browser connects to a web server for viewing a web page.
+This is the initial scenario:
+
+                      [Client (Web browser)] <------- T/R Data -------> [Web Server]     Hard Disk with HTML File.
+
+Now the client and server can communicate by means of the "blue" sockets. When they write to the sockets, the data is sent.
+When they read from them, the data is received. There is a bidirectional communication channel established.
+
+Step 2: The client takes the initiative (always) and sends a request message for obtaining the web page that the user wants to see.
+
+              [Client (Web browser)] ------- HTML Request message -------> [Web Server]    Hard Disk with HTML File.
