@@ -2,7 +2,7 @@ import socket
 from Seq import seq
 
 PORT = 8081
-IP = "212.128.253.105"
+IP = "192.168.0.162"
 MAX_OPEN_REQUESTS = 5
 
 number_con = 0
@@ -21,6 +21,17 @@ try:
 
         print("CONNECTION: {}. From the IP: {}".format(number_con, address))
 
+        lines1 = '-----------------------------------------------------------'
+        lines2 = '-----------------------------------------------------------'
+        mesg = 'Welcome to the Sequence Server. Please enter a valid sequence followed by one of the operations below:\n  · len: calculate the sequence length.\n  · complement: Calculate the complement.\n  · reverse: Calculate the reverse sequence.\n  · countBase : Calculate the number of a chosen base in the sequence. Note: if A wants to be counted, operation must be written like \'countA\'.\n  · percBase : Calculate the percentage of A bases in the sequence. Note: if percentage of As wants to be calculated, operation must be written like \'percA\'.'
+        send_bytes = str.encode(str(mesg))
+        send_lines = str.encode(str(lines1))
+        send_lines2 = str.encode(str(lines2))
+
+        clientsocket.send(send_lines)
+        clientsocket.send(send_bytes)
+        clientsocket.send(send_lines2)
+
         msg = clientsocket.recv(2048).decode("utf-8")
 
         msg = msg.split(',')
@@ -29,6 +40,7 @@ try:
         op = msg[1].strip(' ').lower()
         dna = seq(msg[0])
 
+        if
         if op == 'len':
             message = '\nLenght of the sequence is {}'.format(dna.len())
             send_bytes = str.encode(str(message))
@@ -114,7 +126,7 @@ try:
             clientsocket.close()
 
 except socket.error:
-    print("Problems using port {}. Do you have permission?".format(PORT))
+    print("Problems using port {}.".format(PORT))
 
 except KeyboardInterrupt:
     print("Server stopped by the user")
