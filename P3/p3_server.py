@@ -25,7 +25,7 @@ try:
         msg = msg.split(',')
 
         if not len(msg) == 2:
-            message = 'Please, after the sequence, type a valid operation.'
+            message = '\nPlease, after the sequence, type a valid operation.'
             send_bytes = str.encode(str(message))
 
             clientsocket.send(send_bytes)
@@ -37,85 +37,96 @@ try:
             op = msg[1].strip(' ').lower()
             dna = seq(msg[0])
 
-            if op == 'len':
-                message = '\nLenght of the sequence is {}.'.format(dna.len())
-                send_bytes = str.encode(str(message))
+            dna_set = set('ACTG')
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+            if set(msg[0]).issubset(dna_set):
 
-            elif op == 'complement':
-                message = '\nComplementary sequence is: {}.'.format(dna.complement())
-                send_bytes = str.encode(str(message))
+                if op == 'len':
+                    message = '\nLenght of the sequence is {}.'.format(dna.len())
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'reverse':
-                message = '\nReverse sequence is: {}.'.format(dna.reverse())
-                send_bytes = str.encode(str(message))
+                elif op == 'complement':
+                    message = '\nComplementary sequence is: {}.'.format(dna.complement())
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'counta':
-                message = '\nNumber of \'As\' is: {}.'.format(dna.count('A'))
-                send_bytes = str.encode(str(message))
+                elif op == 'reverse':
+                    message = '\nReverse sequence is: {}.'.format(dna.reverse())
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'countg':
-                message = '\nNumber of \'Gs\' is: {}.'.format(dna.count('G'))
-                send_bytes = str.encode(str(message))
+                elif op == 'counta':
+                    message = '\nNumber of \'As\' is: {}.'.format(dna.count('A'))
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'countc':
-                message = '\nNumber of \'Cs\' is: {}.'.format(dna.count('C'))
-                send_bytes = str.encode(str(message))
+                elif op == 'countg':
+                    message = '\nNumber of \'Gs\' is: {}.'.format(dna.count('G'))
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'countt':
-                message = '\nNumber of \'Ts\' is: {}.'.format(dna.count('T'))
-                send_bytes = str.encode(str(message))
+                elif op == 'countc':
+                    message = '\nNumber of \'Cs\' is: {}.'.format(dna.count('C'))
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'perca':
-                message = '\nPercentage of \'As\' is: {}%.'.format(dna.perc('A'))
-                send_bytes = str.encode(str(message))
+                elif op == 'countt':
+                    message = '\nNumber of \'Ts\' is: {}.'.format(dna.count('T'))
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'percg':
-                message = '\nPercentage of \'Gs\' is: {}%.'.format(dna.perc('G'))
-                send_bytes = str.encode(str(message))
+                elif op == 'perca':
+                    message = '\nPercentage of \'As\' is: {}%.'.format(dna.perc('A'))
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'percc':
-                message = '\nPercentage of \'Cs\' is: {}%.'.format(dna.perc('C'))
-                send_bytes = str.encode(str(message))
+                elif op == 'percg':
+                    message = '\nPercentage of \'Gs\' is: {}%.'.format(dna.perc('G'))
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
-            elif op == 'perct':
-                message = '\nPercentage of \'Ts\' is: {}%.'.format(dna.perc('T'))
-                send_bytes = str.encode(str(message))
+                elif op == 'percc':
+                    message = '\nPercentage of \'Cs\' is: {}%.'.format(dna.perc('C'))
+                    send_bytes = str.encode(str(message))
 
-                clientsocket.send(send_bytes)
-                clientsocket.close()
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
 
+                elif op == 'perct':
+                    message = '\nPercentage of \'Ts\' is: {}%.'.format(dna.perc('T'))
+                    send_bytes = str.encode(str(message))
+
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
+
+                else:
+                    message = '\nOperation not found/available.'
+                    send_bytes = str.encode(str(message))
+
+                    clientsocket.send(send_bytes)
+                    clientsocket.close()
+            
             else:
-                message = 'Operation not found/available. Try again.'
+                message = '\nInvalid DNA sequence.'
                 send_bytes = str.encode(str(message))
 
                 clientsocket.send(send_bytes)
