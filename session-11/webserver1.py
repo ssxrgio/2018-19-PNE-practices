@@ -1,10 +1,10 @@
 import socket
-# import termcolor
+import termcolor
 
-# Change this IP to yours!!!!!
-IP = "212.128.253.100"
-PORT = 8088
+IP = "10.3.53.90"
+PORT = 8090
 MAX_OPEN_REQUESTS = 5
+
 
 def process_client(cs):
     """Process the client request.
@@ -16,29 +16,26 @@ def process_client(cs):
     # Print the received message, for debugging
     print()
     print("Request message: ")
-    #termcolor.cprint(msg, 'green')
-    print(msg)
+    termcolor.cprint(msg, 'green')
 
-    # Print the received message.
-    print()
-    print('Request Message: ')
-    # termcolor.cprint(msg, 'blue')
-    print(msg)
+    # Build the HTTP response message. It has the following lines
+    # Status line
+    # header
+    # blank line
+    # Body (content to send)
 
-    content = 'Hello! I am always depressed! :)'
+    contents = "Hello from my first server!"
 
-    # store the first line into one variable
-    # always use 1.1
+    # -- Everything is OK
+    status_line = "HTTP/1.1 200 OK\r\n"
 
-    status_line = 'HTTP/1.1 200 ok\r\n'
+    # -- Build the header
+    header = "Content-Type: text/plain\r\n"
+    header += "Content-Length: {}\r\n".format(len(str.encode(contents)))
 
-    header = 'Content-Type: text/plain\r\n'
-    header += 'Content-Lenght: {}\r\n'.format((len(str.encode(content))))
-
-    response_msg = status_line + header + '\r\n' + content
-
-    cs.send(str.encode(response_msg))
-
+    # -- Build the message by joining together all the parts
+    response_msg = str.encode(status_line + header + "\r\n" + contents)
+    cs.send(response_msg)
 
     # Close the socket
     cs.close()

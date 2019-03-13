@@ -1,7 +1,7 @@
 import socket
 # import termcolor
 
-IP = "212.128.253.100"
+IP = "10.3.53.90"
 PORT = 8081
 MAX_OPEN_REQUESTS = 5
 
@@ -25,12 +25,8 @@ def process_client(cs):
     # blank line
     # Body (content to send)
 
-    # This new contents are written in HTML language
-    filename = 'index.html'
-    with open(filename, 'r') as file:
-        contents = file.read()
-        file.close()
-
+    contents = open("index.html", "r")
+    
     # -- Everything is OK
     status_line = "HTTP/1.1 200 OK\r\n"
 

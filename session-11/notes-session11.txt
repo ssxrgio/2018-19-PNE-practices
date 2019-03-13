@@ -1,7 +1,9 @@
 __________________________________________________________________________________________________________________________________
 INTRODUCTION TO THE HTTP PROTOCOL:
 ----------------------------------------------------------------------------------------------------------------------------------
-- HTTP protocol is the language spoken between a browser (client) and a web server
+- HTTP protocol is the language spoken between a browser (client) and a web server. the set of rules for transferring files 
+  (text, graphic images, sound, video, and other multimedia files) on the World Wide Web.
+
 - This is our general scenario, in which there is a communication between one client and one server.
   There are two kinds of sockets: one just for listening to new connection on the server (Red dot), and others for interchanging
   data between the client and the server (blue dots).
@@ -16,11 +18,313 @@ REQUESTING A WEB PAGE:
 Let's understand what is happening when a browser connects to a web server for viewing a web page.
 This is the initial scenario:
 
-                      [Client (Web browser)] <------- T/R Data -------> [Web Server]     Hard Disk with HTML File.
+                      [Client (Web browser)] <------- T/R Data -------> [Web Server]  |   Hard Disk with HTML File.
 
-Now the client and server can communicate by means of the "blue" sockets. When they write to the sockets, the data is sent.
+
+STEP 1: CONNECTION ESTABLISHMENT.
+------------------------------------------------------------------------------------------------------------------------------------
+When we write an URL in the browser, we are requesting a web page from the server. The client creates a socket and establish a 
+connection with the server. 
+
+The server creates a new socket (clientsocket) for interchanging data with the client (in both directions). The original socket 
+continues listening for new connections
+
+Now the client and server can communicate by means of the sockets. When they write to the sockets, the data is sent. 
 When they read from them, the data is received. There is a bidirectional communication channel established.
 
-Step 2: The client takes the initiative (always) and sends a request message for obtaining the web page that the user wants to see.
 
-              [Client (Web browser)] ------- HTML Request message -------> [Web Server]    Hard Disk with HTML File.
+
+STEP 2: CLIENT SENDS A REQUEST MESSAGE FOR A WEB PAGE.
+------------------------------------------------------------------------------------------------------------------------------------
+The client takes the initiative (always) and sends a request message for obtaining the web page that the user wants to see.
+
+
+                      [Client (Web browser)] ------- HTML Request message -------> [Web Server]  |  Hard Disk with HTML File.
+
+
+
+STEP 3: THE SERVER READS THE PAEG FROM THE DISK.
+------------------------------------------------------------------------------------------------------------------------------------
+The server receives the request message and reads the html file from the hard disk.
+
+
+
+STEP 4: THE SERVER SENDS A RESPONSE MESSAGE.
+------------------------------------------------------------------------------------------------------------------------------------
+The server builds a response message, composed of different fields. The HTML contents are located in the end of the message.
+
+                    [Client (Web browser)] <------- HTML Response message ------- [Web Server]  |  Hard Disk with HTML File.
+
+
+
+STEP 5: THE BROWSER RENDERS THE PAGE ON THE SCREEN.
+------------------------------------------------------------------------------------------------------------------------------------
+The client receive the html content and shows it on the screen.
+
+                                    |￣￣￣￣￣￣￣￣￣￣￣￣￣￣|
+                                        HTML CONTENTS FROM       
+                                      HTML FILE ARE DISPLAYED
+                                    |＿＿＿＿＿＿＿＿＿＿＿＿＿＿|
+                                            web browser
+
+
+____________________________________________________________________________________________________________________________________
+HTTP MESSAGES:
+------------------------------------------------------------------------------------------------------------------------------------
+
+                    HTTP-message   = <Request> | <Response> ; HTTP/1.1 messages
+
+
+HTTP requests and HTTP responses use a generic message format of RFC 822 for transferring the required data. 
+This generic message format consists of the following four items:
+      
+      1) A Start-line: A start-line will have the following generic syntax: start-line = Request-Line | Status-Lin
+         
+         Example:
+
+         GET /hello.htm HTTP/1.1     (This is Request-Line sent by the client)
+
+         HTTP/1.1 200 OK             (This is Status-Line sent by the server)
+
+      2) Zero or more header fields followed by CRLF: HTTP header fields provide required information about the request or response, 
+         or about the object sent in the message body. There are four types of HTTP message headers:
+
+            - General-header: These header fields have general applicability for both request and response messages.
+
+            - Request-header: These header fields have applicability only for request messages.
+
+            - Response-header: These header fields have applicability only for response messages.
+
+            - Entity-header: These header fields define meta information about the entity-body or, if no body is present, about the 
+                             resource identified by the request.
+
+         All the above mentioned headers follow the same generic format and each of the header field consists of a name followed by a 
+         colon (:) and the field value as follows: message-header = field-name ":" [ field-value ] 
+
+         Example:
+
+         User-Agent: curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3
+         Host: www.example.com
+         Accept-Language: en, mi
+         Date: Mon, 27 Jul 2009 12:28:53 GMT
+         Server: Apache
+         Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+         ETag: "34aa387-d-1568eb00"
+         Accept-Ranges: bytes
+         Content-Length: 51
+         Vary: Accept-Encoding
+         Content-Type: text/plain
+
+      3) An empty line (i.e., a line with nothing preceding the CRLF) indicating the end of the header fields
+
+      4) Optionally a message-body: usually in HTML format/file.
+
+
+
+HTTP REQUEST METHOD.
+------------------------------------------------------------------------------------------------------------------------------------
+
+The request method indicates the method to be performed on the resource identified by the given Request-URI. The method is 
+case-sensitive and should always be mentioned in uppercase. The following table lists all the supported methods in HTTP/1.1.
+
+1 -> GET: The GET method is used to retrieve information from the given server using a given URI. Requests using GET should only 
+          retrieve data and should have no other effect on the data.
+
+2 -> HEAD: Same as GET, but it transfers the status line and the header section only.
+
+3 -> POST: A POST request is used to send data to the server, for example, customer information, file upload, etc. using HTML forms.
+
+4 -> PUT: Replaces all the current representations of the target resource with the uploaded content.
+
+5 -> DELETE: Removes all the current representations of the target resource given by URI.
+
+6 -> CONNECT: Establishes a tunnel to the server identified by a given URI.
+
+7 -> OPTIONS: Describe the communication options for the target resource.
+
+8 -> TRACE: Performs a message loop back test along with the path to the target resource.
+
+
+HTTP REQUEST URI.
+------------------------------------------------------------------------------------------------------------------------------------
+The Request-URI is a Uniform Resource Identifier and identifies the resource upon which to apply the request. 
+Following are the most commonly used forms to specify an URI:
+
+Request-URI = "*" | absoluteURI | abs_path | authority
+ 
+
+1 -> The asterisk * is used when an HTTP request does not apply to a particular resource, but to the server itself, and is only
+allowed when the method used does not necessarily apply to a resource. For example: OPTIONS * HTTP/1.1
+
+2 -> The absoluteURI is used when an HTTP request is being made to a proxy. The proxy is requested to forward the request or service 
+from a valid cache, and return the response. For example: GET http://www.w3.org/pub/WWW/TheProject.html HTTP/1.1
+
+3 -> The most common form of Request-URI is that used to identify a resource on an origin server or gateway. For example, 
+a client wishing to retrieve a resource directly from the origin server would create a TCP connection to port 80 of the host
+"www.w3.org" and send the following lines: 
+
+                    GET /pub/WWW/TheProject.html HTTP/1.1
+
+                    Host: www.w3.org
+
+Note that the absolute path cannot be empty; if none is present in the original URI, it MUST be given as "/" (the server root).
+
+
+-----------> Examples of Request Message <------------
+
+Now let's put it all together to form an HTTP request to fetch hello.htm page from the web server running on tutorialspoint.com
+
+        GET /hello.htm HTTP/1.1
+        User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+        Host: www.tutorialspoint.com
+        Accept-Language: en-us
+        Accept-Encoding: gzip, deflate
+        Connection: Keep-Alive
+
+Here we are not sending any request data to the server because we are fetching a plain HTML page from the server. Connection is a 
+general-header, and the rest of the headers are request headers. The following example shows how to send form data to the server 
+using request message body:
+
+        POST /cgi-bin/process.cgi HTTP/1.1
+        User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+        Host: www.tutorialspoint.com
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: length
+        Accept-Language: en-us
+        Accept-Encoding: gzip, deflate
+        Connection: Keep-Alive
+
+        licenseID=string&content=string&/paramsXML=string
+
+Here the given URL /cgi-bin/process.cgi will be used to process the passed data and accordingly, a response will be returned. 
+Here content-type tells the server that the passed data is a simple web form data and length will be the actual length of the data 
+put in the message body. The following example shows how you can pass plain XML to your web server:
+
+        POST /cgi-bin/process.cgi HTTP/1.1
+        User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+        Host: www.tutorialspoint.com
+        Content-Type: text/xml; charset=utf-8
+        Content-Length: length
+        Accept-Language: en-us
+        Accept-Encoding: gzip, deflate
+        Connection: Keep-Alive
+
+        <?xml version="1.0" encoding="utf-8"?>
+        <string xmlns="http://clearforest.com/">string</string>
+
+
+
+HTTP RESPONSE MESSAGES.
+------------------------------------------------------------------------------------------------------------------------------------
+-> Message Status-Line: A Status-Line consists of the protocol version followed by a numeric status code and its associated textual
+                        phrase. The elements are separated by space SP characters.
+
+Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
+
+-> HTTP Version: A server supporting HTTP version 1.1 will return the following version information: HTTP-Version = HTTP/1.1
+
+-> Status Code: The Status-Code element is a 3-digit integer where first digit of the Status-Code defines the class of response and
+                the last two digits do not have any categorization role. There are 5 values for the first digit:
+
+
+    1	1xx: Informational: It means the request was received and the process is continuing.
+
+    2	2xx: Success: It means the action was successfully received, understood, and accepted.
+
+    3	3xx: Redirection: It means further action must be taken in order to complete the request.
+
+    4	4xx: Client Error: It means the request contains incorrect syntax or cannot be fulfilled.
+
+    5	5xx: Server Error: It means the server failed to fulfill an apparently valid request.
+
+HTTP status codes are extensible and HTTP applications are not required to understand the meaning of all registered status codes. 
+A list of all the status codes has been given in a separate chapter for your reference.
+
+-> Response Header Fields: We will study General-header and Entity-header in a separate chapter when we will learn HTTP header 
+   fields. For now, let's check what Response header fields are.
+
+   The response-header fields allow the server to pass additional information about the response which cannot be placed in the 
+   Status- Line. These header fields give information about the server and about further access to the resource identified by the
+   Request-URI.
+
+                Accept-Ranges
+
+                Age
+
+                ETag
+
+                Location
+
+                Proxy-Authenticate
+
+                Retry-After
+
+                Server
+
+                Vary
+
+                WWW-Authenticate
+
+You can introduce your custom fields in case you are going to write your own custom Web Client and Server.
+
+
+-----------> Examples of Response Message <------------
+
+Now let's put it all together to form an HTTP response for a request to fetch the hello.htm page.
+
+    HTTP/1.1 200 OK
+    Date: Mon, 27 Jul 2009 12:28:53 GMT
+    Server: Apache/2.2.14 (Win32)
+    Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+    Content-Length: 88
+    Content-Type: text/html
+    Connection: Closed
+
+    <html>
+    <body>
+    <h1>Hello, World!</h1>
+    </body>
+    </html>
+
+The following example shows an HTTP response message displaying error condition when the web server could not find the requested
+page:
+
+    HTTP/1.1 404 Not Found
+    Date: Sun, 18 Oct 2012 10:36:20 GMT
+    Server: Apache/2.2.14 (Win32)
+    Content-Length: 230
+    Connection: Closed
+    Content-Type: text/html; charset=iso-8859-1
+    <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+
+    <html>
+    <head>
+    <title>404 Not Found</title>
+    </head>
+    <body>
+    <h1>Not Found</h1>
+    <p>The requested URL /t.html was not found on this server.</p>
+    </body>
+    </html>
+
+Following is an example of HTTP response message showing error condition when the web server encountered a wrong HTTP version in 
+the given HTTP request:
+
+    HTTP/1.1 400 Bad Request
+    Date: Sun, 18 Oct 2012 10:36:20 GMT
+    Server: Apache/2.2.14 (Win32)
+    Content-Length: 230
+    Content-Type: text/html; charset=iso-8859-1
+    Connection: Closed
+    
+    <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+    <html>
+    <head>
+    <title>400 Bad Request</title>
+    </head>
+    <body>
+    <h1>Bad Request</h1>
+    <p>Your browser sent a request that this server could not understand.</p>
+    <p>The request line contained invalid characters following the protocol string.</p>
+    </body>
+    </html>

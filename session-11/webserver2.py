@@ -1,8 +1,8 @@
 import socket
-# import termcolor
+import termcolor
 
-IP = "212.128.253.100"
-PORT = 8087
+IP = "10.3.53.90"
+PORT = 8080
 MAX_OPEN_REQUESTS = 5
 
 
@@ -16,8 +16,7 @@ def process_client(cs):
     # Print the received message, for debugging
     print()
     print("Request message: ")
-    #termcolor.cprint(msg, 'green')
-    print(msg)
+    termcolor.cprint(msg, 'green')
 
     # Build the HTTP response message. It has the following lines
     # Status line
@@ -25,7 +24,7 @@ def process_client(cs):
     # blank line
     # Body (content to send)
 
-    # This new contents are written in HTML language
+    # This new contents are written in HTML 
     contents = """
     <!DOCTYPE html>
     <html lang="en" dir="ltr">
@@ -33,9 +32,9 @@ def process_client(cs):
         <meta charset="utf-8">
         <title>Green server</title>
       </head>
-      <body style="background-color: yellow;">
-        <h1> Welcome to the Red Server</h1>
-        <p> I have daltonism ;)</p>
+      <body style="background-color: lightgreen;">
+        <h1>GREEN SERVER</h1>
+        <p>I am the Green Server! :-)</p>
       </body>
     </html>
     """
