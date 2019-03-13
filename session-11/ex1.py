@@ -1,8 +1,8 @@
 import socket
-# import termcolor
+import termcolor
 
 IP = "10.3.53.90"
-PORT = 8080
+PORT = 8081
 MAX_OPEN_REQUESTS = 5
 
 
@@ -16,14 +16,7 @@ def process_client(cs):
     # Print the received message, for debugging
     print()
     print("Request message: ")
-    #termcolor.cprint(msg, 'green')
-    print(msg)
-
-    # Build the HTTP response message. It has the following lines
-    # Status line
-    # header
-    # blank line
-    # Body (content to send)
+    termcolor.cprint(msg, 'green')
 
     filename = 'index.html'
     with open(filename, 'r') as f:
