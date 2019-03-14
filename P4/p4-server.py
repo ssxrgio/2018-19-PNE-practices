@@ -2,8 +2,9 @@ import socket
 import termcolor
 
 IP = "10.3.48.103"
-PORT = 8096
+PORT = 8090
 MAX_OPEN_REQUESTS = 5
+
 
 def process_client(cs):
     """Process the client request.
@@ -14,34 +15,29 @@ def process_client(cs):
 
     # Print the received message, for debugging
     print()
-    print('Request message: ')
-    termcolor.cprint(msg, "yellow")
-    msg_list = msg.split("\r\n")
-    request_msg = msg_list[0].lstrip('GET').rstrip('HTTP/1.1')
+    print("Request message: ")
+    termcolor.cprint(msg, 'blue')
+    msglist = msg.split("\r\n")
+    request = msglist[0]
+    r = request.lstrip("GET").rstrip("HTTP/1.1")
+    print(r)
 
-    if request_msg == ' / ':
-        filename = 'index.html'
-        with open(filename, 'r') as f:
-            contents = f.read()
-            f.close()
-
-    if request_msg == '/blue':
-        filename = 'blue.html'
-        with open(filename, 'r') as f:
-            contents = f.read()
-            f.close()
-
-    elif request_msg == '/pink':
-        filename = 'blue.html'
-        with open(filename, 'r') as f:
-            contents = f.read()
-            f.close()
-
+    if r == " /pink ":
+        with open("pink.html", "r") as c:
+            contents = c.read()
+            c.close()
+    elif r == " /blue ":
+        with open("blue.html", "r") as c:
+            contents = c.read()
+            c.close()
+    elif r == " / ":
+        with open("index.html", "r") as c:
+            contents = c.read()
+            c.close()
     else:
-        filename = 'error.html'
-        with open(filename, 'r') as f:
-            contents = f.read()
-            f.close()
+        with open("error.html", "r") as c:
+            contents = c.read()
+            c.close()
 
     # -- Everything is OK
     status_line = "HTTP/1.1 200 OK\r\n"
