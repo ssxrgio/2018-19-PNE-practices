@@ -1,8 +1,8 @@
 import socket
 import termcolor
 
-IP = "192.168.0.160"
-PORT = 8081
+IP = "10.3.48.103"
+PORT = 8096
 MAX_OPEN_REQUESTS = 5
 
 def process_client(cs):
@@ -14,11 +14,12 @@ def process_client(cs):
 
     # Print the received message, for debugging
     print()
-    request_msg = '/op'
-    print("Request message: ")
-    termcolor.cprint(msg, 'green')
+    print('Request message: ')
+    termcolor.cprint(msg, "yellow")
+    msg_list = msg.split("\r\n")
+    request_msg = msg_list[0].lstrip('GET').rstrip('HTTP/1.1')
 
-    if request_msg == '':
+    if request_msg == ' / ':
         filename = 'index.html'
         with open(filename, 'r') as f:
             contents = f.read()
