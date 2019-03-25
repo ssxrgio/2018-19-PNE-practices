@@ -1,0 +1,53 @@
+__________________________________________________________________________________________________________________________________
+LOCAL FILES:
+----------------------------------------------------------------------------------------------------------------------------------
+
+1. LOCAL FILES VS. REMOTE FILES.
+----------------------------------------------------------------------------------------------------------------------------------
+In most of the learning area, we tell you to open your examples directly in a browser - which you do by double-clicking the
+HTML file, or dragging and dropping it in a browser window or choosing File > Open... and navigating to the HTML file, etc.
+
+There are many ways to do this.
+
+You know if you are running the example from a local file because the web address will have file:// at the beginning, followed by
+the path to the file on your local hard drive. Conversely, if you see one of our examples hosted on GitHub (or an example on some
+other remote server), the web address will have http:// or https:// at the beginning, to show that the file has been received via
+HTTP.
+
+
+2. THE PROBLEM OF TESTING LOCAL FILES.
+----------------------------------------------------------------------------------------------------------------------------------
+Some examples will not run if you open them as local files. This may be due to a variety of reasons, the most likely ones:
+
+    1.  They have asynchronous requests. Some browsers (including chrome) will not run asynchronous requests (see Getting data
+        from the server) if you just run the example from a local file. This is due to security restrictions (for more information
+        about web security, read The Security of the Web Site).
+
+    2.  It has a server language. Server languages (such as PHP or Python) require a special server to interpret the code and
+        deliver the results.
+
+RUNNING A SIMPLE HTTP LOCAL SERVER.
+----------------------------------------------------------------------------------------------------------------------------------
+
+To avoid the problem of asynchronous requests, we need to test these examples by running them through a local web server.
+One of the easiest ways to do this for our purposes is to use Python's SimpleHTTPServer module.
+
+To do this:
+On Pycharm, select the session-13 folder. Right-click on it and chose the 'Open in terminal' entry. From that terminal execute:
+
+           >> python -m http.server 8000
+
+It will launch the web server. Go to the browser and open this page: http://localhost:8000. This other URLs are equivalent:
+    -  http://0.0.0.0:8000
+    -  http://your-IP:8000.
+
+By default, the directory content will run on a local web server, on port 8000. Here you will see the contents of the directory
+listed.
+
+Note: if you already have something running on port 8000, you can choose another port by running the following server command
+on an alternative port number, for example
+
+           >> python -m SimpleHTTPServer 7800.
+
+You can access your content at localhost:7800.
+
