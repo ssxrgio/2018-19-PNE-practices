@@ -18,7 +18,7 @@ def get_jokes():
         pass
 
     else:
-        print()
+
         print("Response received: ", end='')
         print(r1.status, r1.reason)
         print()
