@@ -1,0 +1,31 @@
+It is time to develop simple python clients for getting data from servers around the world. We will learn by practicing.
+__________________________________________________________________________________________________________________________________
+Accessing to remote data: API REST
+----------------------------------------------------------------------------------------------------------------------------------
+For accessing to remote data, first we need to know what servers are available, and what is the web interface they provide
+
+Finding public APIs
+----------------------------------------------------------------------------------------------------------------------------------
+Here you can find a list of public APIs for accessing the data: weather, animals, human gnome, drugs, github...
+
+List of public web APIs: https://github.com/toddmotto/public-apis/blob/master/README.md
+
+On the left we find the link to the server that provides the service. On the right we find some information on the type of access
+to the server:
+
+    - HTTPS: Some services are provided through the HTTP protocol, that we already know, but others use the HTTPS. It is similar
+             to HTTP, but the information is encrypted, so its more secure. We should know if the service is provided by HTTP or
+             HTTPS in order to program our clients.
+
+    - AUTH: For using some APIs, authentication is required. Other APIs, like github, have some data available without
+            authentication, and is required for another. The authentication can be:
+
+            -> OAuth: OAuth is an open standard for access delegation, commonly used as a way for Internet users to grant websites
+                      or applications access to their information on other websites but without giving them the passwords.
+
+                      provides to clients a "secure delegated access" to server resources on behalf of a resource owner.
+                      It specifies a process for resource owners to authorize third-party access to their server resources without
+                      sharing their credentials. Designed specifically to work with Hypertext Transfer Protocol (HTTP), OAuth
+                      essentially allows access tokens to be issued to third-party clients by an authorization server, with the
+                      approval of the resource owner.
+        API Key
