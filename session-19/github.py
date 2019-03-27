@@ -50,6 +50,6 @@ nrepos = user['public_repos']
 
 print()
 print("User: {}".format(login))
-print("Name: {}".format(name))
+print("Real Name: {}".format(name))
 print("Repos: {}".format(nrepos))
 print("Bio: {}".format(bio))
