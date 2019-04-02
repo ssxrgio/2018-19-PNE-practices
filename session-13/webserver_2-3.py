@@ -5,7 +5,6 @@ import termcolor
 # Define the Server's port
 PORT = 8009
 
-
 # Class with our Handler. It is a called derived from BaseHTTPRequestHandler
 # It means that our class inheritates all his methods and properties
 class TestHandler(http.server.BaseHTTPRequestHandler):
