@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SEQUENCE ANALYSIS</title>
+  </head>
+  <body style="background-color: #D0F386">
+    <h2>Please type a valid DNA sequence and choose the operations you want to perform on it.</h2>
+    <form action="results" method="get">
+      DNA Sequence:  <input type="text" name="msg">
+      <br><br>
+      Calculate lenght:
+      <input type="checkbox" name="chk">
+      <br><br>
+      Select base:
+      <ul>
+        <li><input type="radio" name="base" value="A"> A (Adenine) </li>
+        <li><input type="radio" name="base" value="C"> C (Cytosine)</li>
+        <li><input type="radio" name="base" value="T"> T (Thymine)</li>
+         <li> <input type="radio" name="base" value="G"> G (Guanine)</li>
+      </ul>
+      Operation on Bases:
+      <select name="operation">
+        <option value="count">Count</option>
+        <option value="perc">Percentage</option>
+      </select>
+       <br>
+        <br><input type="submit"/></br>
+    </form>
+
+  </body>
+</html>
