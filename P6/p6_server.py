@@ -22,16 +22,23 @@ def check_sequence(seq):
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
-        termcolor.cprint(self.requestline, 'green')
+
+        if "favicon.ico" in self.path:
+            termcolor.cprint("\nPath: {}".format(self.path.replace("favicon.ico", "")), 'cyan')
+
+        else:
+            termcolor.cprint("\nPath: {}".format(self.path), 'cyan')
 
         if self.path == "/":
+
             with open("index.html", "r") as c:
                 contents = c.read()
                 c.close()
 
         elif "msg" in self.path:
+
             msg = self.path[self.path.find("=") + 1:self.path.find("&")] # This is the sequence written in the form
-            termcolor.cprint(msg, 'yellow')
+            termcolor.cprint("Sequence: {}".format(msg), 'yellow')
 
             if check_sequence(msg):
                 with open("results.html", "r") as f:
@@ -45,8 +52,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
 
                     elif operation == "count":
                         operation = "Count"
-                    termcolor.cprint(operation, 'blue')
-                    termcolor.cprint(base, "blue")
+
+                    termcolor.cprint("Operation: {}".format(operation), 'blue')
+                    termcolor.cprint("Base: {}".format(base), "blue")
 
                     if operation == "count":
                         op = seq.count(str(base))
